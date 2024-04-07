@@ -1,0 +1,9 @@
+from django.urls import path
+
+from . import views
+
+app_name = 'curses'
+
+urlpatterns = [
+    path('<int:curs_id>/', views.curse_detail.as_view(), name='curses'),
+]

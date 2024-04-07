@@ -1,0 +1,1 @@
+MAX_RANGE_TITLE = 31
