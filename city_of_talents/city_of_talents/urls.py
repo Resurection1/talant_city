@@ -8,6 +8,7 @@ urlpatterns = [
     path('pages/', include('pages.urls')),
     path('curses/', include('curses.urls')),
     path('books/', include('books.urls')),
+    path('super_memory/', include('super_memory.urls')),
     path('', include('site_title.urls'), name='Главная страница'),
 ]
 

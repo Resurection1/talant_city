@@ -7,7 +7,7 @@ from .serializer import Site_titleSerializer, TrainerSerializer
 
 class site_title(APIView):
     def get(self, request):
-        trainers = Trainer.objects.all()
+        trainers = Trainer.objects.all().filter(is_published=True)
 
         curses = Curse.objects.select_related(
             'location', 'trainer'
@@ -24,5 +24,3 @@ class site_title(APIView):
         }
 
         return Response(data)
-
-        return Response(serializer.data)

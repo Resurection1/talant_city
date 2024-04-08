@@ -7,20 +7,24 @@ class TrainirAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'surname',
-        'description',
+        'is_published',
     )
-
+    list_editable = (
+        'is_published',
+    )
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
-    pass
-
+    list_display = (
+        'name',
+        'address',
+    )
+    list_display_links = ('name',)
 
 @admin.register(Curse)
 class AdminCurse(admin.ModelAdmin):
     list_display = (
         'title',
-        'description',
         'location',
         'introductory_lecture',
         'first_lesson',

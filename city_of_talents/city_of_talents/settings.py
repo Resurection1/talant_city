@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'site_title.apps.Site_titleConfig',
     'pages.apps.PagesConfig',
     'books.apps.BooksConfig',
+    'super_memory.apps.SuperMemoryConfig',
     'rest_framework',
     'corsheaders',
     'ckeditor'
@@ -30,6 +31,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'height': 300,
         'width': 900,
+        'skin': 'moono-lisa',
     },
 }
 

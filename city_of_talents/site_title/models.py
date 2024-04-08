@@ -1,5 +1,7 @@
 from django.db import models
 
+from ckeditor.fields import RichTextField
+
 from .constants import MAX_RANGE_TITLE
 from core.models import PublishedModel
 
@@ -8,6 +10,12 @@ class Location(PublishedModel):
     name = models.CharField(
         max_length=256,
         verbose_name='Название места'
+    )
+    address = models.CharField(
+        max_length=256,
+        verbose_name='Адрес',
+        null=True,
+        blank=False
     )
 
     class Meta:
@@ -27,9 +35,13 @@ class Trainer(models.Model):
         max_length=256,
         verbose_name='Фамилия'
     )
-    description = models.TextField(
+    description = RichTextField(
         verbose_name='Описание'
     )
+    is_published = models.BooleanField(
+        default=True,
+        verbose_name='Опубликовано',
+        help_text='Снимите галочку, чтобы скрыть публикацию.')
 
     class Meta:
         verbose_name = 'тренир'
@@ -45,7 +57,7 @@ class Curse(PublishedModel):
         verbose_name='Курс'
     )
 
-    description = models.TextField(
+    description = RichTextField(
         verbose_name='Описание'
     )
 
