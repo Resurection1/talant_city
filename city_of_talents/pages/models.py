@@ -1,8 +1,14 @@
 from django.db import models
 
+from ckeditor.fields import RichTextField
+
 
 class About(models.Model):
-    text = models.TextField(
+    title = models.CharField(
+        max_length=256,
+        verbose_name='Заголовок'
+    )
+    text = RichTextField(
         verbose_name='О компании'
     )
 
@@ -11,4 +17,4 @@ class About(models.Model):
         verbose_name_plural = 'О компании'
 
     def __str__(self):
-        return self.text
+        return self.title

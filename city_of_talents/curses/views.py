@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,8 +15,3 @@ class curse_detail(APIView):
         serializer = Site_titleSerializer(curse)
         return Response(serializer.data)
 
-    def post(self, request):
-        serializer = Site_titleSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)

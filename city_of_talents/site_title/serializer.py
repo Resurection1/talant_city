@@ -17,8 +17,9 @@ class TrainerSerializer(serializers.ModelSerializer):
 class Site_titleSerializer(serializers.ModelSerializer):
     location = LocationSerializer()
     trainer = TrainerSerializer()
-    
+
     class Meta:
         model = Curse
         fields = ['title', 'description', 'location',
-                  'introductory_lecture', 'first_lesson', 'pub_date', 'trainer']
+                  'introductory_lecture',
+                  'first_lesson', 'pub_date', 'trainer']
