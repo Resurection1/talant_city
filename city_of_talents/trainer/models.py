@@ -15,13 +15,15 @@ class Trainer(models.Model):
         verbose_name='Фамилия'
     )
     description = RichTextField(
-        verbose_name='Описание'
+        verbose_name='Описание',
+        null=True,
+        blank=True
     )
     is_published = models.BooleanField(
         default=True,
         verbose_name='Опубликовано',
         help_text='Снимите галочку, чтобы скрыть публикацию.')
-    photo = models.ImageField(upload_to='trainer')
+    photo = models.ImageField(upload_to='trainers')
 
     class Meta:
         verbose_name = 'тренира'

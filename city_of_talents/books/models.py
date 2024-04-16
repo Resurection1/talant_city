@@ -45,10 +45,11 @@ class Book(PublishedModel):
     link = models.URLField(
         verbose_name='Ссылка на скачивание',
         null=True,
+        blank=True,
         help_text='Введите ссылку на скачивание'
     )
     photo = models.ImageField(
-        upload_to='books',
+        upload_to='book',
         verbose_name='photo',
         null=True,
         blank=True

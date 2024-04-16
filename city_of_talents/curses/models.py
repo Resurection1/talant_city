@@ -97,3 +97,29 @@ class Timetable(PublishedModel):
 
     def __str__(self):
         return self.curse.title[:MAX_RANGE_TITLE]
+
+
+class Reviews(PublishedModel):
+    title = models.CharField(max_length=256, verbose_name='Заголовок')
+    description = models.TextField(verbose_name='Описание')
+    curse = models.ForeignKey(
+        Curse,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name='Курс'
+    )
+
+    photo = models.ImageField(
+        upload_to='curse',
+        verbose_name='photo',
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return self.title[:MAX_RANGE_TITLE]
