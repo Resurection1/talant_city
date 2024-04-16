@@ -11,9 +11,15 @@ class About(models.Model):
     text = RichTextField(
         verbose_name='О компании'
     )
+    photo = models.ImageField(
+        upload_to='about',
+        verbose_name='photo',
+        null=True,
+        blank=True
+    )
 
     class Meta:
-        verbose_name = 'компании'
+        verbose_name = 'О компании'
         verbose_name_plural = 'О компании'
 
     def __str__(self):

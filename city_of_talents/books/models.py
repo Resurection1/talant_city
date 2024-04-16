@@ -47,6 +47,12 @@ class Book(PublishedModel):
         null=True,
         help_text='Введите ссылку на скачивание'
     )
+    photo = models.ImageField(
+        upload_to='books',
+        verbose_name='photo',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = 'книга'

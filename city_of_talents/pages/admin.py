@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from .models import About
 
@@ -7,8 +8,16 @@ from .models import About
 class AboutAdmin(admin.ModelAdmin):
     list_display = (
         'title',
+        'post_photo'
     )
     list_display_links = ('title',)
+
+    readonly_fields = ["post_photo"]
+
+    def post_photo(self, about):
+        if about.photo:
+            return mark_safe(f'<img src="{about.photo.url}" width="75" height="75">')
+        return 'Нет фотографии'
 
 
 admin.site.empty_value_display = 'Не задано'

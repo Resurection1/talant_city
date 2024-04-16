@@ -9,4 +9,4 @@ class BookSerializer(serializers.ModelSerializer):
         fields = ['title', 'author', 'publishing_house',
                   'the_year_of_publishing', 'ISBN',
                   'count_of_pages', 'format', 'circulation',
-                  'link', 'is_published']
+                  'link', 'photo']
