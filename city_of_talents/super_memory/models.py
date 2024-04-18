@@ -9,9 +9,6 @@ class Super_memory(models.Model):
         max_length=256,
         verbose_name='Заголовок'
     )
-    description = RichTextField(
-        verbose_name='Описание'
-    )
     is_published = models.BooleanField(
         default=True,
         verbose_name='Опубликовано',

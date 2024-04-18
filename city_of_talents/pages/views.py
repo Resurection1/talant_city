@@ -10,6 +10,6 @@ class about(APIView):
 
     def get(self, request):
         about = About.objects.values(
-            'title', 'text', 'photo').filter(is_published=True)
+            'title', 'text', 'photo', 'is_published').filter(is_published=True)
         serializer = AboutSerializer(about, many=True)
         return Response(serializer.data)

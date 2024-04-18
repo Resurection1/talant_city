@@ -9,5 +9,5 @@ class trainer_list(APIView):
     def get(self, request):
         trainers = Trainer.objects.all().filter(is_published=True)
 
-        trainer_serializer = TrainerSerializer(trainers, many=True)
+        trainer_serializer = TrainerSerializer(trainers, many=True, context={'request': request})
         return Response(trainer_serializer.data)

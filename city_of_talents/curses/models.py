@@ -36,9 +36,14 @@ class Curse(PublishedModel):
     description = RichTextField(
         verbose_name='Описание'
     )
+    description_comment = models.TextField(
+        verbose_name='Короткое описание',
+        blank=True,
+        null=True
+    )
     photo = models.ImageField(
         upload_to='curse',
-        verbose_name='photo',
+        verbose_name='Фотография',
         null=True,
         blank=True
     )
@@ -68,6 +73,7 @@ class Timetable(PublishedModel):
         verbose_name='Местоположение',
         related_name='locations'
     )
+
     trainer = models.ForeignKey(
         Trainer,
         on_delete=models.SET_NULL,
@@ -123,3 +129,39 @@ class Reviews(PublishedModel):
 
     def __str__(self):
         return self.title[:MAX_RANGE_TITLE]
+
+
+class Sign_up_for_a_course(models.Model):
+    name = models.CharField(max_length=64, verbose_name='Имя')
+    phone_number = models.CharField(
+        max_length=15,
+        verbose_name='Номер телефона'
+    )
+    email = models.EmailField(max_length=256, verbose_name='Емаил')
+    curse = models.ForeignKey(
+        Curse,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name='Курсы',
+
+    )
+    call_back = models.BooleanField(
+        default=True,
+        verbose_name='Перезвонить',
+        help_text='Клиент попросил перезвонить позже.')
+    is_delete = models.BooleanField(
+        default=False,
+        verbose_name='Удалить',
+        help_text='Клиент попросил больше не звонить.')
+    is_sign_up = models.BooleanField(
+        default=False,
+        verbose_name='Придет на курс',
+        help_text='Готов придти на курс.')
+
+    class Meta:
+        verbose_name = 'Заявки послупления на курс'
+        verbose_name_plural = 'Заявки послупления на курс'
+
+    def __str__(self):
+        return self.name[:MAX_RANGE_TITLE]

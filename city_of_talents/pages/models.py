@@ -17,6 +17,10 @@ class About(models.Model):
         null=True,
         blank=True
     )
+    is_published = models.BooleanField(
+        default=True,
+        verbose_name='Опубликовано',
+        help_text='Снимите галочку, чтобы скрыть публикацию.')
 
     class Meta:
         verbose_name = 'О компании'

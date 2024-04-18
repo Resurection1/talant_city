@@ -7,5 +7,7 @@ app_name = 'curses'
 urlpatterns = [
     path('<int:curs_id>/', views.curse_detail.as_view(), name='curse'),
     path('timetable/', views.timetable.as_view(), name='timetable'),
+    path('sign-up-for-a-course/', views.sign_up_for_a_course.as_view(),
+         name='sign-up-for-a-course'),
     path("", views.curse_list.as_view(), name="curses"),
 ]
