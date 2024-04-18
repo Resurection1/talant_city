@@ -47,7 +47,7 @@ class Sign_up_for_a_courseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sign_up_for_a_course
-        fields = ['name', 'phone_number', 'email', 'curse']
+        fields = ['name', 'phone_number', 'email', 'curse', 'customer_comment']
 
     def validate_phone_number(self, value):
         self.phone_number_validator(value)

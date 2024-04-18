@@ -7,7 +7,8 @@ from curses.models import Location
 class Super_memory(models.Model):
     title = models.CharField(
         max_length=256,
-        verbose_name='Заголовок'
+        verbose_name='Заголовок',
+        help_text='Данный заголовок преднозначен для личного понимания'
     )
     is_published = models.BooleanField(
         default=True,

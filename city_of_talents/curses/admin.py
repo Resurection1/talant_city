@@ -82,12 +82,14 @@ class AdminSign_up_for_a_course(admin.ModelAdmin):
         'name',
         'phone_number',
         'email',
+        'customer_comment',
+        'authors_comment',
         'is_sign_up',
         'call_back',
         'is_delete'
-
     )
     list_editable = (
+        'authors_comment',
         'is_sign_up',
         'call_back',
         'is_delete'

@@ -144,8 +144,19 @@ class Sign_up_for_a_course(models.Model):
         blank=True,
         null=True,
         verbose_name='Курсы',
-
     )
+    customer_comment = models.TextField(
+        verbose_name='Комментарий клиента',
+        blank=True,
+        null=True
+    )
+
+    authors_comment = models.TextField(
+        verbose_name='Служебный комментарий',
+        blank=True,
+        null=True
+    )
+
     call_back = models.BooleanField(
         default=True,
         verbose_name='Перезвонить',

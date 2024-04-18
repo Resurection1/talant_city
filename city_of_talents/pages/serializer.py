@@ -5,4 +5,4 @@ from .models import About
 class AboutSerializer(serializers.ModelSerializer):
     class Meta:
         model = About
-        fields = ['title', 'text', 'photo']
+        fields = ['text', 'photo']
