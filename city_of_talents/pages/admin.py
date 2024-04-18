@@ -20,7 +20,9 @@ class AboutAdmin(admin.ModelAdmin):
 
     def post_photo(self, about):
         if about.photo:
-            return mark_safe(f'<img src="{about.photo.url}" width="75" height="75">')
+            return mark_safe(
+                f'<img src="{about.photo.url}" width="75" height="75">'
+            )
         return 'Нет фотографии'
 
 

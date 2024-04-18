@@ -2,6 +2,8 @@ from django.db import models
 
 from ckeditor.fields import RichTextField
 
+from django.core.validators import FileExtensionValidator
+
 from .constants import MAX_RANGE_TITLE
 from core.models import PublishedModel
 from trainer.models import Trainer
@@ -176,3 +178,39 @@ class Sign_up_for_a_course(models.Model):
 
     def __str__(self):
         return self.name[:MAX_RANGE_TITLE]
+
+
+class Video(PublishedModel):
+    title = models.CharField(
+        max_length=256,
+        verbose_name='Заголовок'
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        blank=True,
+        null=True
+        )
+    link = models.URLField(
+        verbose_name='Ссылка на видео',
+        blank=True,
+        null=True
+    )
+
+    video_file = models.FileField(
+        verbose_name='Загрузить файл',
+        upload_to='videos_curses',
+        null=True,
+        blank=True,
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv']
+                )
+            ]
+        )
+
+    class Meta:
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'
+
+    def __str__(self):
+        return self.title[:MAX_RANGE_TITLE]

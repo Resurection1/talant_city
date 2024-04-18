@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Curse, Location, Trainer, Timetable, Sign_up_for_a_course
-
+from .models import (Curse, Location,
+                     Trainer, Timetable, Sign_up_for_a_course, Video)
 from django.core.validators import RegexValidator
 
 
@@ -9,7 +9,7 @@ class CurseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Curse
-        fields = ['title', 'description_comment', 'photo']
+        fields = ['title', 'description_comment', 'description', 'photo']
 
     def get_photo(self, curse):
         request = self.context.get('request')
@@ -56,3 +56,9 @@ class Sign_up_for_a_courseSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         # Call the superclass validate method to perform any other validations
         return super().validate(attrs)
+
+
+class VideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Video
+        fields = ['title', 'description', 'link', 'video_file']

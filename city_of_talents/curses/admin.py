@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Curse, Location, Timetable, Reviews, Sign_up_for_a_course
+from .models import (Curse, Location, Timetable,
+                     Reviews, Sign_up_for_a_course, Video)
 
 
 @admin.register(Location)
@@ -31,7 +32,9 @@ class AdminCurse(admin.ModelAdmin):
 
     def post_photo(self, curse):
         if curse.photo:
-            return mark_safe(f'<img src="{curse.photo.url}" width="75" height="75">')
+            return mark_safe(
+                f'<img src="{curse.photo.url}" width="75" height="75">'
+            )
         return 'Нет фотографии'
 
 
@@ -72,7 +75,9 @@ class AdminReviews(admin.ModelAdmin):
 
     def post_photo(self, reviews):
         if reviews.photo:
-            return mark_safe(f'<img src="{reviews.photo.url}" width="75" height="75">')
+            return mark_safe(
+                f'<img src="{reviews.photo.url}" width="75" height="75">'
+            )
         return 'Нет фотографии'
 
 
@@ -97,6 +102,26 @@ class AdminSign_up_for_a_course(admin.ModelAdmin):
 
     list_display_links = ('name',)
     list_filter = ('name', 'is_sign_up', 'call_back')
+
+
+@admin.register(Video)
+class AdminVideo(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'description',
+        'link',
+        'video_file',
+        'is_published'
+    )
+    list_display_links = ('title',)
+
+    list_editable = (
+        'description',
+        'link',
+        'is_published'
+    )
+
+    list_filter = ('title', 'is_published')
 
 
 admin.site.empty_value_display = 'Не задано'

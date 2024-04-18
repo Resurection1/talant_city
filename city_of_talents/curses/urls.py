@@ -9,5 +9,6 @@ urlpatterns = [
     path('timetable/', views.timetable.as_view(), name='timetable'),
     path('sign-up-for-a-course/', views.sign_up_for_a_course.as_view(),
          name='sign-up-for-a-course'),
+    path('video/', views.video_list.as_view(), name='video'),
     path("", views.curse_list.as_view(), name="curses"),
 ]
