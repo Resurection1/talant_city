@@ -8,7 +8,11 @@ from .models import About
 class AboutAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'post_photo'
+        'post_photo',
+        'is_published',
+    )
+    list_editable = (
+        'is_published',
     )
     list_display_links = ('title',)
 

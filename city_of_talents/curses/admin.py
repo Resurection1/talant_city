@@ -87,6 +87,12 @@ class AdminSign_up_for_a_course(admin.ModelAdmin):
         'is_delete'
 
     )
+    list_editable = (
+        'is_sign_up',
+        'call_back',
+        'is_delete'
+    )
+
     list_display_links = ('name',)
     list_filter = ('name', 'is_sign_up', 'call_back')
 

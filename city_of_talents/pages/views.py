@@ -9,7 +9,8 @@ class about(APIView):
     """Отрисовка страницы о проекте"""
 
     def get(self, request):
-        about = About.objects.values(
-            'title', 'text', 'photo', 'is_published').filter(is_published=True)
-        serializer = AboutSerializer(about, many=True)
+        about = About.objects.all().filter(is_published=True)
+        serializer = AboutSerializer(
+            about, many=True, context={'request': request}
+        )
         return Response(serializer.data)
