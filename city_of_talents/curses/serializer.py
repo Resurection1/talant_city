@@ -59,6 +59,20 @@ class Sign_up_for_a_courseSerializer(serializers.ModelSerializer):
 
 
 class VideoSerializer(serializers.ModelSerializer):
+    link_name = serializers.SerializerMethodField()
+    file_link_names = serializers.SerializerMethodField('get_file_link_names')
+
     class Meta:
         model = Video
-        fields = ['title', 'description', 'link', 'video_file']
+        fields = ['title', 'description', 'link_name', 'file_link_names']
+
+    def get_link_name(self, obj):
+        return [link.url for link in obj.link.all()]
+
+    def get_file_link_names(self, obj):
+        request = self.context.get('request')
+        if request and obj.video_file.exists():
+            file_urls = [request.build_absolute_uri(
+                file_link.video_file.url) for file_link in obj.video_file.all()]
+            return file_urls
+        return None

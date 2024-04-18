@@ -1,3 +1,5 @@
+from os.path import basename
+
 from django.db import models
 
 from ckeditor.fields import RichTextField
@@ -180,6 +182,42 @@ class Sign_up_for_a_course(models.Model):
         return self.name[:MAX_RANGE_TITLE]
 
 
+class Link(models.Model):
+    url = models.URLField(
+        null=True,
+        blank=True,
+        verbose_name='Ссылка на видео'
+    )
+
+    class Meta:
+        verbose_name = 'Ссылка на видео'
+        verbose_name_plural = 'Ссылка на видео'
+
+    def __str__(self):
+        return self.url
+
+
+class File_Link(models.Model):
+    video_file = models.FileField(
+        verbose_name='Загрузить файл',
+        upload_to='videos_curses',
+        null=True,
+        blank=True,
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv']
+            )
+        ]
+    )
+
+    class Meta:
+        verbose_name = 'Загрузить файл'
+        verbose_name_plural = 'Загрузить файл'
+
+    def __str__(self):
+        return basename(self.video_file.name)
+
+
 class Video(PublishedModel):
     title = models.CharField(
         max_length=256,
@@ -189,24 +227,19 @@ class Video(PublishedModel):
         verbose_name='Описание',
         blank=True,
         null=True
-        )
-    link = models.URLField(
-        verbose_name='Ссылка на видео',
-        blank=True,
-        null=True
     )
-
-    video_file = models.FileField(
-        verbose_name='Загрузить файл',
-        upload_to='videos_curses',
-        null=True,
+    link = models.ManyToManyField(
+        Link,
         blank=True,
-        validators=[
-            FileExtensionValidator(
-                allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv']
-                )
-            ]
-        )
+        null=True,
+        verbose_name='Ссылки'
+    )
+    video_file = models.ManyToManyField(
+        File_Link,
+        blank=True,
+        null=True,
+        verbose_name='Ссылки'
+    )
 
     class Meta:
         verbose_name = 'Видео'

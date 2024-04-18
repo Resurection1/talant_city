@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from .models import (Curse, Location, Timetable,
-                     Reviews, Sign_up_for_a_course, Video)
+                     Reviews, Sign_up_for_a_course, Video, Link, File_Link)
 
 
 @admin.register(Location)
@@ -109,19 +109,27 @@ class AdminVideo(admin.ModelAdmin):
     list_display = (
         'title',
         'description',
-        'link',
-        'video_file',
         'is_published'
     )
     list_display_links = ('title',)
 
     list_editable = (
         'description',
-        'link',
         'is_published'
     )
 
     list_filter = ('title', 'is_published')
+    filter_horizontal = ('link', 'video_file')
+
+
+@admin.register(Link)
+class AdminVideoLink(admin.ModelAdmin):
+    verbose_name = 'Название вашей модели'
+
+
+@admin.register(File_Link)
+class AdminVideoFileLink(admin.ModelAdmin):
+    verbose_name = 'Название вашей модели'
 
 
 admin.site.empty_value_display = 'Не задано'
