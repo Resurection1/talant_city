@@ -23,7 +23,8 @@ class Book(PublishedModel):
     the_year_of_publishing = models.CharField(
         max_length=256,
         verbose_name='год издания',
-        null=True
+        null=True,
+        blank=True
     )
     ISBN = models.CharField(
         max_length=256,
@@ -32,15 +33,22 @@ class Book(PublishedModel):
         blank=True
     )
     count_of_pages = models.IntegerField(
-        verbose_name='Число страниц'
+        verbose_name='Число страниц',
+        null=True,
+        blank=True
     )
     format = models.CharField(
         max_length=256,
-        verbose_name='Формат'
+        verbose_name='Формат',
+        null=True,
+        blank=True
+
     )
     circulation = models.CharField(
         max_length=256,
-        verbose_name='Тираж'
+        verbose_name='Тираж',
+        null=True,
+        blank=True
     )
     link = models.URLField(
         verbose_name='Ссылка на скачивание',
@@ -56,5 +64,5 @@ class Book(PublishedModel):
     )
 
     class Meta:
-        verbose_name = 'книга'
+        verbose_name = 'книгу'
         verbose_name_plural = 'Книги'
