@@ -9,7 +9,7 @@ class CurseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Curse
-        fields = ['title', 'description_comment', 'description', 'photo']
+        fields = ['id', 'title', 'description_comment', 'description', 'photo']
 
     def get_photo(self, curse):
         request = self.context.get('request')
@@ -73,6 +73,7 @@ class VideoSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if request and obj.video_file.exists():
             file_urls = [request.build_absolute_uri(
-                file_link.video_file.url) for file_link in obj.video_file.all()]
+                file_link.video_file.url) for file_link in obj.video_file.all()
+            ]
             return file_urls
         return None

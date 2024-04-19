@@ -87,6 +87,7 @@ class AdminSign_up_for_a_course(admin.ModelAdmin):
         'name',
         'phone_number',
         'email',
+        'curse',
         'customer_comment',
         'authors_comment',
         'is_sign_up',

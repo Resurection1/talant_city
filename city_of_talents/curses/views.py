@@ -44,7 +44,7 @@ class timetable(APIView):
             'location', 'curse', 'trainer'
         ).filter(
             is_published=True,
-            pub_date__date__lt=current_date,
+            pub_date__date__gte=current_date,
 
         ).order_by(
             'introductory_lecture')
