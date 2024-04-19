@@ -1,8 +1,10 @@
+from django.utils.html import format_html
+
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from .models import (Curse, Location, Timetable,
-                     Reviews, Sign_up_for_a_course, Video, Link, File_Link)
+                     Reviews, Sign_up_for_a_course, Video, Link)
 
 
 @admin.register(Location)
@@ -120,17 +122,22 @@ class AdminVideo(admin.ModelAdmin):
     )
 
     list_filter = ('title', 'is_published')
-    filter_horizontal = ('link', 'video_file')
+    filter_horizontal = ('link',)
 
 
 @admin.register(Link)
 class AdminVideoLink(admin.ModelAdmin):
-    verbose_name = 'Название вашей модели'
+    list_display = ('title', 'url')
 
 
-@admin.register(File_Link)
-class AdminVideoFileLink(admin.ModelAdmin):
-    verbose_name = 'Название вашей модели'
+# @admin.register(File_Link)
+# class AdminVideoFileLink(admin.ModelAdmin):
+#     list_display = ('title', 'play_video')
+
+#     def play_video(self, obj):
+#         return format_html('<a href="{}" target="_blank">{}</a>',
+#                            obj.video_file.url, obj.video_file.name)
+    
 
 
 admin.site.empty_value_display = 'Не задано'

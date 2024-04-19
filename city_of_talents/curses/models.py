@@ -1,10 +1,10 @@
-from os.path import basename
+# from os.path import basename
 
 from django.db import models
 
 from ckeditor.fields import RichTextField
 
-from django.core.validators import FileExtensionValidator
+# from django.core.validators import FileExtensionValidator
 
 from .constants import MAX_RANGE_TITLE
 from core.models import PublishedModel
@@ -183,6 +183,12 @@ class Sign_up_for_a_course(models.Model):
 
 
 class Link(models.Model):
+    title = models.CharField(
+        max_length=64,
+        null=True,
+        blank=True,
+        verbose_name='Заголовок'
+    )
     url = models.URLField(
         null=True,
         blank=True,
@@ -197,25 +203,31 @@ class Link(models.Model):
         return self.url
 
 
-class File_Link(models.Model):
-    video_file = models.FileField(
-        verbose_name='Загрузить файл',
-        upload_to='videos_curses',
-        null=True,
-        blank=True,
-        validators=[
-            FileExtensionValidator(
-                allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv']
-            )
-        ]
-    )
+# class File_Link(models.Model):
+#     title = models.CharField(
+#         max_length=64,
+#         null=True,
+#         blank=True,
+#         verbose_name='Заголовок'
+#         )
+#     video_file = models.FileField(
+#         verbose_name='Загрузить файл',
+#         upload_to='videos_curses',
+#         null=True,
+#         blank=True,
+#         validators=[
+#             FileExtensionValidator(
+#                 allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv']
+#             )
+#         ]
+#     )
 
-    class Meta:
-        verbose_name = 'Загрузить файл'
-        verbose_name_plural = 'Загрузить файл'
+#     class Meta:
+#         verbose_name = 'Загрузить файл'
+#         verbose_name_plural = 'Загрузить файл'
 
-    def __str__(self):
-        return basename(self.video_file.name)
+#     def __str__(self):
+#         return basename(self.video_file.name)
 
 
 class Video(PublishedModel):
@@ -234,12 +246,12 @@ class Video(PublishedModel):
         null=True,
         verbose_name='Ссылки'
     )
-    video_file = models.ManyToManyField(
-        File_Link,
-        blank=True,
-        null=True,
-        verbose_name='Ссылки'
-    )
+    # video_file = models.ManyToManyField(
+    #     File_Link,
+    #     blank=True,
+    #     null=True,
+    #     verbose_name='Загрузить файл'
+    # )
 
     class Meta:
         verbose_name = 'Видео'
