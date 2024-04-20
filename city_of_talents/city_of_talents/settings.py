@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'pages.apps.PagesConfig',
     'curses.apps.CursesConfig',
     'books.apps.BooksConfig',
     'super_memory.apps.SuperMemoryConfig',

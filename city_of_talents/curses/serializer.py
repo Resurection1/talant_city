@@ -75,4 +75,4 @@ class VideoSerializer(serializers.ModelSerializer):
     #             file_link.video_file.url) for file_link in obj.video_file.all()
     #         ]
     #         return file_urls
-        return None
+        # return None

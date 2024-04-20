@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from .models import Timetable, Curse, Video
 from .serializer import (TimetableSerializer,
                          CurseSerializer,
-                         Sign_up_for_a_courseSerializer, VideoSerializer)
+                         Sign_up_for_a_courseSerializer, VideoSerializer, Sign_up_for_a_course)
 
 
 class curse_detail(APIView):
@@ -45,7 +45,7 @@ class timetable(APIView):
         ).filter(
             is_published=True,
             pub_date__date__lte=current_date,
-
+            first_lesson__date__gte=current_date
         ).order_by(
             'introductory_lecture')
 
@@ -55,11 +55,11 @@ class timetable(APIView):
 
 class sign_up_for_a_course(APIView):
     """Отправка post запроса с регистрацией на курс"""
-    # def get(self, request):
-    #     timetable = Sign_up_for_a_course.objects.all()
+    def get(self, request):
+        timetable = Sign_up_for_a_course.objects.all()
 
-    #     serializer = Sign_up_for_a_courseSerializer(timetable, many=True)
-    #     return Response(serializer.data)
+        serializer = Sign_up_for_a_courseSerializer(timetable, many=True)
+        return Response(serializer.data)
 
     def post(self, request):
         serializer = Sign_up_for_a_courseSerializer(data=request.data)

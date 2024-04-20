@@ -14,7 +14,7 @@ from trainer.models import Trainer
 class Location(PublishedModel):
     name = models.CharField(
         max_length=256,
-        verbose_name='Название места'
+        verbose_name='Город'
     )
     address = models.CharField(
         max_length=256,
@@ -28,7 +28,7 @@ class Location(PublishedModel):
         verbose_name_plural = 'Местоположения'
 
     def __str__(self):
-        return self.name[:MAX_RANGE_TITLE]
+        return f'{self.name}, {self.address}'[:MAX_RANGE_TITLE]
 
 
 class Curse(PublishedModel):
