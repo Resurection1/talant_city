@@ -243,7 +243,6 @@ class Video(PublishedModel):
     link = models.ManyToManyField(
         Link,
         blank=True,
-        null=True,
         verbose_name='Ссылки'
     )
     # video_file = models.ManyToManyField(
