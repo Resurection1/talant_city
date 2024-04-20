@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import (Curse, Location,
-                     Trainer, Timetable, Sign_up_for_a_course, Video)
+                     Trainer, Timetable, Sign_up_for_a_course, Video, Reviews)
 from django.core.validators import RegexValidator
 
 
@@ -59,7 +59,8 @@ class Sign_up_for_a_courseSerializer(serializers.ModelSerializer):
 
 class VideoSerializer(serializers.ModelSerializer):
     link_name = serializers.SerializerMethodField()
-    # file_link_names = serializers.SerializerMethodField('get_file_link_names')
+    # file_link_names = serializers.SerializerMethodField(
+    # 'get_file_link_names')
 
     class Meta:
         model = Video
@@ -76,3 +77,21 @@ class VideoSerializer(serializers.ModelSerializer):
     #         ]
     #         return file_urls
         # return None
+
+
+class ReviewsSerializer(serializers.ModelSerializer):
+    photo = serializers.SerializerMethodField('get_photo')
+    curse_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Reviews
+        fields = ['title', 'description', 'curse_name', 'photo']
+
+    def get_photo(self, reviews):
+        request = self.context.get('request')
+        if request and reviews.photo:
+            return request.build_absolute_uri(reviews.photo.url)
+        return None
+
+    def get_curse_name(self, obj):
+        return obj.curse.title

@@ -25,7 +25,8 @@ class BookAdmin(admin.ModelAdmin):
 
     def post_photo(self, book):
         if book.photo:
-            return mark_safe(f'<img src="{book.photo.url}" width="75" height="75">')
+            return mark_safe(
+                f'<img src="{book.photo.url}" width="75" height="75">')
         return 'Нет фотографии'
 
 
