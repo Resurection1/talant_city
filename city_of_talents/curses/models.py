@@ -83,7 +83,7 @@ class Timetable(PublishedModel):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name='Тренир',
+        verbose_name='Тренер',
         related_name='trainers'
     )
     introductory_lecture = models.DateTimeField(

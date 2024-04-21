@@ -26,8 +26,8 @@ class Trainer(models.Model):
     photo = models.ImageField(upload_to='trainers')
 
     class Meta:
-        verbose_name = 'тренира'
-        verbose_name_plural = 'Трениры'
+        verbose_name = 'тренeра'
+        verbose_name_plural = 'Тренeры'
 
     def __str__(self):
         return self.name[:MAX_RANGE_TITLE]
