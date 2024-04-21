@@ -51,6 +51,11 @@ class Curse(PublishedModel):
         null=True,
         blank=True
     )
+    link = models.ManyToManyField(
+        'Link',
+        blank=True,
+        verbose_name='Ссылки'
+    )
 
     class Meta:
         verbose_name = 'курс'
@@ -200,7 +205,7 @@ class Link(models.Model):
         verbose_name_plural = 'Ссылка на видео'
 
     def __str__(self):
-        return self.url
+        return self.title
 
 
 # class File_Link(models.Model):

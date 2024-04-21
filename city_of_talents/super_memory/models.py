@@ -1,7 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
-from curses.models import Location
+from curses.models import Location, Link
 
 
 class Super_memory(models.Model):
@@ -31,6 +31,11 @@ class Super_memory(models.Model):
         verbose_name='photo',
         null=True,
         blank=True
+    )
+    link = models.ManyToManyField(
+        Link,
+        blank=True,
+        verbose_name='Ссылки'
     )
 
     class Meta:

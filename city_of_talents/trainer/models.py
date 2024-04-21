@@ -12,7 +12,8 @@ class Trainer(models.Model):
     )
     surname = models.CharField(
         max_length=256,
-        verbose_name='Фамилия'
+        verbose_name='Фамилия',
+        blank=True
     )
     description = RichTextField(
         verbose_name='Описание',

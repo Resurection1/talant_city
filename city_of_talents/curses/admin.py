@@ -29,8 +29,8 @@ class AdminCurse(admin.ModelAdmin):
         'is_published',
     )
     list_display_links = ('title',)
-
     readonly_fields = ["post_photo"]
+    filter_horizontal = ('link',)
 
     def post_photo(self, curse):
         if curse.photo:
@@ -55,6 +55,7 @@ class AdminTimetable(admin.ModelAdmin):
         'is_published',
     )
     list_display_links = ('curse',)
+    list_filter = ('curse', 'introductory_lecture', 'first_lesson', 'pub_date', 'is_published')
 
 
 @admin.register(Reviews)
@@ -122,7 +123,7 @@ class AdminVideo(admin.ModelAdmin):
     )
 
     list_filter = ('title', 'is_published')
-    filter_horizontal = ('link',)
+    filter_horizontal = ('link', )
 
 
 @admin.register(Link)
@@ -137,7 +138,6 @@ class AdminVideoLink(admin.ModelAdmin):
 #     def play_video(self, obj):
 #         return format_html('<a href="{}" target="_blank">{}</a>',
 #                            obj.video_file.url, obj.video_file.name)
-    
 
 
 admin.site.empty_value_display = 'Не задано'

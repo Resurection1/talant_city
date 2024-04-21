@@ -6,16 +6,20 @@ from django.core.validators import RegexValidator
 
 class CurseSerializer(serializers.ModelSerializer):
     photo = serializers.SerializerMethodField('get_photo')
+    link_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Curse
-        fields = ['id', 'title', 'description_comment', 'description', 'photo']
+        fields = ['id', 'title', 'description_comment', 'description', 'photo', 'link_name']
 
     def get_photo(self, curse):
         request = self.context.get('request')
         if request and curse.photo:
             return request.build_absolute_uri(curse.photo.url)
         return None
+    
+    def get_link_name(self, obj):
+        return [link.url for link in obj.link.all()]
 
 
 class LocationSerializer(serializers.ModelSerializer):
