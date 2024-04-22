@@ -1,4 +1,5 @@
 # from os.path import basename
+from django.core.mail import send_mail
 
 from django.db import models
 
@@ -49,12 +50,14 @@ class Curse(PublishedModel):
         upload_to='curse',
         verbose_name='Фотография',
         null=True,
-        blank=True
+        blank=True,
+        help_text='Форматы изображения jpg и png'
     )
     link = models.ManyToManyField(
         'Link',
         blank=True,
-        verbose_name='Ссылки'
+        verbose_name='Ссылки',
+        help_text='Видео загружается ссылкой с Ютуба'
     )
 
     class Meta:
@@ -186,6 +189,21 @@ class Sign_up_for_a_course(models.Model):
     def __str__(self):
         return self.name[:MAX_RANGE_TITLE]
 
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None  # Проверяем, новая ли это запись
+        super().save(*args, **kwargs)  # Сначала сохраняем объект
+
+        if is_new:  # Если это новая запись, отправляем письмо
+            self.send_confirmation_email()
+
+    def send_confirmation_email(self):
+        ADMIN_EMAIL = 'mih.podzorov@gmail.com'
+        subject = f"Подтверждение заявки на курс {self.curse}"
+        message = f"{self.name}, записался(ась) на курс '{self.curse}'.\n" \
+                  f"Комментарий: {self.customer_comment or 'Нет комментария'}"
+        recipient_list = [ADMIN_EMAIL]
+        send_mail(subject, message, 'CuPKO1797@yandex.ru', recipient_list)
+
 
 class Link(models.Model):
     title = models.CharField(
@@ -197,7 +215,8 @@ class Link(models.Model):
     url = models.URLField(
         null=True,
         blank=True,
-        verbose_name='Ссылка на видео'
+        verbose_name='Ссылка на видео',
+        help_text='Видео загружается ссылкой с Ютуба'
     )
 
     class Meta:

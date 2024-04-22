@@ -30,7 +30,8 @@ class Super_memory(models.Model):
         upload_to='super_memory',
         verbose_name='photo',
         null=True,
-        blank=True
+        blank=True,
+        help_text='Форматы изображения jpg и png'
     )
 
     class Meta:

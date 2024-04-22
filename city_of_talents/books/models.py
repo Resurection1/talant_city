@@ -60,7 +60,8 @@ class Book(PublishedModel):
         upload_to='book',
         verbose_name='photo',
         null=True,
-        blank=True
+        blank=True,
+        help_text='Форматы изображения jpg и png'
     )
 
     class Meta:

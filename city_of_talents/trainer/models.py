@@ -24,7 +24,10 @@ class Trainer(models.Model):
         default=True,
         verbose_name='Опубликовано',
         help_text='Снимите галочку, чтобы скрыть публикацию.')
-    photo = models.ImageField(upload_to='trainers')
+    photo = models.ImageField(
+        upload_to='trainers',
+        help_text='Форматы изображения jpg и png'
+        )
 
     class Meta:
         verbose_name = 'тренeра'

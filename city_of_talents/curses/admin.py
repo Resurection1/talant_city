@@ -52,10 +52,14 @@ class AdminTimetable(admin.ModelAdmin):
         'is_published'
     )
     list_editable = (
+        'introductory_lecture',
+        'first_lesson',
+        'pub_date',
         'is_published',
     )
     list_display_links = ('curse',)
-    list_filter = ('curse', 'introductory_lecture', 'first_lesson', 'pub_date', 'is_published')
+    list_filter = ('curse', 'introductory_lecture',
+                   'first_lesson', 'pub_date', 'is_published')
 
 
 @admin.register(Reviews)
