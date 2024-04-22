@@ -10,14 +10,15 @@ class CurseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Curse
-        fields = ['id', 'title', 'description_comment', 'description', 'photo', 'link_name']
+        fields = ['id', 'title', 'description_comment',
+                  'description', 'photo', 'link_name']
 
     def get_photo(self, curse):
         request = self.context.get('request')
         if request and curse.photo:
             return request.build_absolute_uri(curse.photo.url)
         return None
-    
+
     def get_link_name(self, obj):
         return [link.url for link in obj.link.all()]
 
