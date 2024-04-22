@@ -18,7 +18,6 @@ class TrainirAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = ["post_photo"]
-    filter_horizontal = ('link', )
 
     def post_photo(self, memory):
         if memory.photo:

@@ -47,7 +47,6 @@ class timetable(APIView):
         ).filter(
             is_published=True,
             pub_date__date__lte=current_date,
-            first_lesson__date__gte=current_date
         ).order_by(
             'introductory_lecture')
 
