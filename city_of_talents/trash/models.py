@@ -6,15 +6,11 @@ from curses.constants import MAX_RANGE_TITLE
 class Trash_File_Link(models.Model):
     title = models.CharField(
         max_length=64,
-        null=True,
-        blank=True,
         verbose_name='Заголовок'
     )
     file = models.FileField(
         verbose_name='Загрузить файл',
         upload_to='all_file',
-        null=True,
-        blank=True,
         help_text=('Выберите текстовый файл для загрузки на сервер'
                    'и дальнейшего использования в тексовом редакторе')
     )
