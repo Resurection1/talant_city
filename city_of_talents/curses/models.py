@@ -1,11 +1,8 @@
-# from os.path import basename
 from django.core.mail import send_mail
-
 from django.db import models
 
 from ckeditor.fields import RichTextField
 
-# from django.core.validators import FileExtensionValidator
 
 from .constants import MAX_RANGE_TITLE
 from core.models import PublishedModel
@@ -199,7 +196,8 @@ class Sign_up_for_a_course(models.Model):
     def send_confirmation_email(self):
         ADMIN_EMAIL = 'mih.podzorov@gmail.com'
         subject = f"Подтверждение заявки на курс {self.curse}"
-        message = f"{self.name}, записался(ась) на курс '{self.curse}'.\n" \
+        message = f"{self.name}, записался(ась) на курс ' \
+        {self.curse if self.curse != None else 'Конкурс супер память'}'.\n" \
                   f"Комментарий: {self.customer_comment or 'Нет комментария'}"
         recipient_list = [ADMIN_EMAIL]
         send_mail(subject, message, 'CuPKO1797@yandex.ru', recipient_list)
