@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ('django-insecure-^s6v)xo3qf9v&rgfh'
               'v63o4)^#a$axgr42b2akc@1v*^ry0)j)&')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
