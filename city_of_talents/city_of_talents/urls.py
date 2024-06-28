@@ -6,10 +6,10 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='Админ'),
-    path('curses/', include('curses.urls')),
-    path('books/', include('books.urls')),
-    path('super_memory/', include('super_memory.urls')),
-    path('trainer/', include('trainer.urls')),
+    path('request/curses/', include('curses.urls')),
+    path('request/books/', include('books.urls')),
+    path('request/super_memory/', include('super_memory.urls')),
+    path('request/trainer/', include('trainer.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

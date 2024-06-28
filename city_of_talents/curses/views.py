@@ -1,10 +1,10 @@
 from datetime import datetime
 
 from django.shortcuts import get_object_or_404
-
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 from .models import Timetable, Curse, Video,  Reviews
 from .serializer import (TimetableSerializer,
                          CurseSerializer,
@@ -57,11 +57,11 @@ class timetable(APIView):
 
 class sign_up_for_a_course(APIView):
     """Отправка post запроса с регистрацией на курс"""
-    def get(self, request):
-        timetable = Sign_up_for_a_course.objects.all()
+    # def get(self, request):
+    #     timetable = Sign_up_for_a_course.objects.all()
 
-        serializer = Sign_up_for_a_courseSerializer(timetable, many=True)
-        return Response(serializer.data)
+    #     serializer = Sign_up_for_a_courseSerializer(timetable, many=True)
+    #     return Response(serializer.data)
 
     def post(self, request):
         # Assuming you have a serializer for handling POST data

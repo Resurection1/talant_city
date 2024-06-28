@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ('django-insecure-^s6v)xo3qf9v&rgfh'
               'v63o4)^#a$axgr42b2akc@1v*^ry0)j)&')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -148,8 +148,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'CuPKO1797@yandex.ru'
-EMAIL_HOST_PASSWORD = 'jbvefmbbffgicelv'
+EMAIL_HOST_USER = '' #email
+EMAIL_HOST_PASSWORD = '' # password
 EMAIL_USE_SSL = True
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -194,13 +194,14 @@ class Sign_up_for_a_course(models.Model):
             self.send_confirmation_email()
 
     def send_confirmation_email(self):
-        ADMIN_EMAIL = 'mih.podzorov@gmail.com'
+        ADMIN_EMAIL = ''  # enter the sender's email
+        RECIPIENT_EMAIL = ''  # enter the recipient's email
         subject = f"Подтверждение заявки на курс {self.curse}"
         message = f"{self.name}, записался(ась) на курс ' \
         {self.curse if self.curse != None else 'Конкурс супер память'}'.\n" \
                   f"Комментарий: {self.customer_comment or 'Нет комментария'}"
         recipient_list = [ADMIN_EMAIL]
-        send_mail(subject, message, 'CuPKO1797@yandex.ru', recipient_list)
+        send_mail(subject, message, RECIPIENT_EMAIL, recipient_list)
 
 
 class Link(models.Model):
