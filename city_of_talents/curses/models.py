@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField
 
 from .constants import MAX_RANGE_TITLE
 from core.models import PublishedModel
-from trainer.models import Trainer
+# from trainer.models import Trainer
 
 
 class Location(PublishedModel):
@@ -83,14 +83,14 @@ class Timetable(PublishedModel):
         related_name='locations'
     )
 
-    trainer = models.ForeignKey(
-        Trainer,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        verbose_name='Тренер',
-        related_name='trainers'
-    )
+    # trainer = models.ForeignKey(
+    #     Trainer,
+    #     on_delete=models.SET_NULL,
+    #     blank=True,
+    #     null=True,
+    #     verbose_name='Тренер',
+    #     related_name='trainers'
+    # )
     introductory_lecture = models.DateTimeField(
         verbose_name='Дата и время первой лекции',
     )
